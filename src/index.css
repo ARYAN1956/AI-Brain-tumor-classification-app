@@ -11,3 +11,27 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Responsive utility styles */
+.hamburger {
+  display: none;
+}
+
+@media screen and (max-width: 850px) {
+  .nav-links-desktop {
+    display: none !important;
+  }
+  .hamburger {
+    display: block !important;
+  }
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
