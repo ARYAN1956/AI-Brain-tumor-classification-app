@@ -3,10 +3,11 @@ services:
     name: fastapi-ml-backend
     env: python
     plan: free
-    region: oregon  # Or your preferred region
+    region: oregon
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port 10000
-    pythonVersion: 3.10.12
+    runtime: python
+    pythonVersion: 3.10.12   # ✅ Must use 3.10 or 3.9
     autoDeploy: true
     envVars:
       - key: PORT
