@@ -16,7 +16,7 @@ origins = [
     "http://localhost:3002",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:3002",
-    "https://your-frontend.onrender.com",  # Replace with actual URL when deployed
+    "https://ai-brain-tumor-classification-apps.onrender.com",  # Replace with actual URL when deployed
 ]
 
 app.add_middleware(
