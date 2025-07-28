@@ -3,4 +3,5 @@ uvicorn
 pillow
 numpy
 tensorflow
-python-multipart
+python-multipart==0.0.9
+gdown==5.1.0
