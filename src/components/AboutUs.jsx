@@ -65,8 +65,8 @@ const AboutUs = () => {
           transition={{ delay: 1, duration: 0.8 }}
         >
           <h4>📍 Developed By:</h4>
-          <p>SRM Institute of Science & Technology (KTR) — Final Year In-House Project Team</p>
-          <p style={{ fontSize: "13px", color: "#777" }}>Project Guide: Dr. A. Sharma | Team: Aryan & Co.</p>
+          <p>SRM Institute of Science & Technology (KTR) —  In-House Project Team</p>
+          <p style={{ fontSize: "13px", color: "#777" }}>Project Guide: Dr. M. Vimaladevi | Team: Aryan & Co.</p>
           <a
             href="https://docs.google.com/document/d/1aTD5hqJCHgYGkptZstw-DnYLAawGpcAr/edit?usp=sharing&ouid=100919272392595438158&rtpof=true&sd=true"
             target="_blank"

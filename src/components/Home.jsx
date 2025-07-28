@@ -70,7 +70,7 @@ const Home = () => {
 
       {/* Features Section with Flip Cards */}
       <section style={styles.featuresSection}>
-        <h2 style={styles.sectionTitle}>Why IntelliCrux-Net++ Is the Smarter Diagnostic Choice ?</h2>
+        <h2 style={styles.sectionTitle}>Why IntelliCrux-Net++ Is the Smarter Diagnostic Choice?</h2>
         <p style={styles.sectionDescription}>
           Discover the core advantages that make our AI model stand out for reliable and efficient brain tumor classification.
         </p>
@@ -104,7 +104,8 @@ const Home = () => {
         <p style={styles.sectionDescription}>
           Experience a streamlined process from image upload to comprehensive diagnostic results.
         </p>
-        <div style={styles.workflowBox}>
+        {/* Adjusted workflowBox for full-width stacking on small screens */}
+        <div className="workflow-box-responsive">
           {[
             {
               step: 1,
@@ -125,7 +126,7 @@ const Home = () => {
               text: "Receive immediate diagnostic results with clear interpretations and downloadable PDF reports, guiding your next steps.",
             },
           ].map((item, i) => (
-            <div className="workflow-card-item" key={i}>
+            <div className="workflow-card-item-responsive" key={i}>
               <div style={styles.workflowCard}>
                 <img
                   src={`${process.env.PUBLIC_URL}/assets/icons/${item.icon}.png`}
@@ -157,11 +158,12 @@ const Home = () => {
       {/* Styles */}
       <style>
         {`
+          /* Base Styles for Flip Cards */
           .flip-card-wrapper {
             flex: 0 0 auto;
             width: 280px;
             height: 220px;
-            margin: 1rem;
+            margin: 1rem; /* Adjust margin for spacing */
             perspective: 1000px;
             transition: transform 0.3s ease-out;
           }
@@ -251,56 +253,203 @@ const Home = () => {
             left: 0;
           }
 
-          .workflow-card-item {
-            flex: 1 1 300px;
-            max-width: 380px;
-            margin: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-          }
-
-          .workflow-card-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
-          }
-
-          @media (max-width: 768px) {
-            .flip-card-wrapper {
-              width: 100%;
-              height: 200px;
-            }
-            .workflow-card-item {
-              width: 100%;
-            }
-          }
-
-          /* New CSS for continuous typewriter effect WITHOUT cursor */
+          /* Typewriter Effect */
           .typewriter-text-loop-no-cursor {
             overflow: hidden;
             white-space: nowrap;
-            /* No border-right for cursor */
-            animation: 
+            animation:
               typing-no-cursor 6s steps(60) infinite; /* Adjust 6s for speed */
             display: inline-block;
             max-width: 100%;
             font-family: 'monospace', sans-serif;
           }
 
-          /* Calculating characters: "IntelliCrux-Net++\nReal-time Brain Tumor Classification Model"
-             Let's count:
-             "IntelliCrux-Net++" (18 chars)
-             + "\n" (1 char for line break, but visually it's 0 width)
-             "Real-time Brain Tumor Classification Model" (42 chars)
-             Total perceived characters: 18 + 42 = 60
-          */
-
           @keyframes typing-no-cursor {
-            0% { width: 0; } /* Start typing */
-            48% { width: 100%; } /* Finish typing */
-            50% { width: 100%; } /* Hold full text momentarily */
-            52% { width: 100%; } /* Hold full text momentarily */
-            98% { width: 0; } /* Finish deleting */
-            100% { width: 0; } /* Ready for next loop */
+            0% { width: 0; }
+            48% { width: 100%; }
+            50% { width: 100%; }
+            52% { width: 100%; }
+            98% { width: 0; }
+            100% { width: 0; }
+          }
+
+          /* Workflow Section - Responsive adjustments for full-width stacking */
+          .workflow-box-responsive {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: stretch; /* Ensure cards stretch to same height if content varies */
+            margin-top: 3rem;
+            /* Removed gap here because individual item margins will handle separation */
+          }
+
+          .workflow-card-item-responsive {
+            flex: 1 1 300px; /* Allows cards to grow and shrink, with a base of 300px */
+            max-width: 380px; /* Max width for larger screens to keep them from being too wide */
+            margin: 1.5rem; /* Consistent margin around items for desktop/tablet view */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex; /* Make it a flex container to push child content */
+            flex-direction: column; /* Stack content vertically */
+            align-items: center; /* Center horizontally */
+            text-align: center; /* Center text within the card item */
+          }
+
+          .workflow-card-item-responsive:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+          }
+
+          /* Specific styles for the actual workflow card content */
+          .workflow-card-item-responsive > div { /* Target the div with style={styles.workflowCard} */
+            width: 100%; /* Ensure the inner card takes full width of its wrapper */
+            height: 100%; /* Ensure it fills the height */
+            box-sizing: border-box; /* Include padding/border in the width/height */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start; /* Align content to the top */
+          }
+          .workflow-card-item-responsive h3,
+          .workflow-card-item-responsive p {
+              text-align: center; /* Ensure text is centered within the card */
+          }
+
+
+          /* Responsive Adjustments */
+          @media (max-width: 1200px) {
+            .sectionTitle {
+              font-size: 2.5rem;
+            }
+          }
+
+          @media (max-width: 992px) {
+            .heroTitle {
+              font-size: 2.2rem;
+            }
+            .heroSubtitle {
+              font-size: 1.1rem;
+            }
+            .sectionTitle {
+              font-size: 2.2rem;
+            }
+            .sectionDescription {
+              font-size: 1.1rem;
+            }
+            .flip-card-wrapper {
+              width: 250px;
+              height: 200px;
+              margin: 0.8rem;
+            }
+            .workflow-card-item-responsive { /* Adjust for two columns on medium screens */
+              flex: 1 1 45%;
+              max-width: 48%;
+              margin: 1rem;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .heroTitle {
+              font-size: 1.8rem;
+              margin-bottom: 0.8rem;
+            }
+            .heroSubtitle {
+              font-size: 1rem;
+              margin-bottom: 1.5rem;
+            }
+            .sectionTitle {
+              font-size: 2rem;
+            }
+            .sectionDescription {
+              font-size: 1rem;
+              margin-bottom: 3rem;
+            }
+            .flip-card-wrapper {
+              width: 90%; /* Almost full width for better spacing on mobile */
+              height: auto;
+              min-height: 200px;
+              margin: 1rem auto; /* Center individual cards */
+            }
+            .flip-card-front, .flip-card-back {
+              padding: 1.5rem;
+            }
+            /* Workflow cards to be full width and stacked */
+            .workflow-box-responsive {
+              flex-direction: column; /* Stack workflow cards vertically */
+              align-items: center; /* Center them */
+            }
+            .workflow-card-item-responsive {
+              width: 90%; /* Match the width of the image */
+              max-width: 450px; /* Limit max width on larger screens */
+              margin: 1rem auto; /* Center individual cards with vertical spacing */
+              box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Add a subtle shadow as seen in image */
+              border: 1px solid #e0e0e0; /* Add a border to separate as seen in image */
+              border-radius: 15px; /* Match existing border radius */
+              padding: 20px; /* Add padding inside the item, similar to the image's "card" area */
+            }
+
+            /* Ensure the inner content (the actual workflowCard) takes full space */
+            .workflow-card-item-responsive > div {
+                background-color: transparent; /* Remove the white background from the inner card */
+                border: none; /* Remove border from inner card */
+                padding: 0; /* Remove padding from inner card */
+                box-shadow: none; /* Remove shadow from inner card */
+                height: auto; /* Allow content to dictate height */
+            }
+
+            .workflowIcon {
+              width: 60px;
+              height: 60px;
+              margin-bottom: 1rem;
+            }
+            .workflow-card-item-responsive h3 {
+              font-size: 1.2rem;
+              margin-bottom: 0.5rem; /* Reduce margin */
+            }
+            .workflow-card-item-responsive p {
+              font-size: 0.9rem;
+            }
+            .footer {
+              padding: 1.5rem;
+              font-size: 0.85rem;
+            }
+            .footer div {
+              display: flex;
+              flex-direction: column;
+              gap: 0.5rem;
+              margin-top: 10px;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .heroText {
+              padding: 0.5rem;
+            }
+            .heroTitle {
+              font-size: 1.5rem;
+            }
+            .heroSubtitle {
+              font-size: 0.9rem;
+            }
+            .sectionTitle {
+              font-size: 1.8rem;
+            }
+            .flip-card-front h3 {
+              font-size: 1.4rem;
+            }
+            .flip-card-front p {
+              font-size: 0.9rem;
+            }
+            .flip-card-back h4 {
+              font-size: 1.1rem;
+            }
+            .flip-card-back li {
+              font-size: 0.9rem;
+            }
+            .workflow-card-item-responsive {
+                width: 95%; /* Make it almost full width on very small screens */
+                padding: 15px; /* Slightly less padding */
+            }
           }
         `}
       </style>
@@ -383,21 +532,18 @@ const styles = {
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "center",
+    gap: "1.5rem", // Spacing between flip cards
   },
   workflowSection: {
     padding: "5rem 2rem",
     background: "#eef5fa",
     textAlign: "center",
   },
-  workflowBox: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    marginTop: "3rem",
-  },
-  workflowCard: {
-    backgroundColor: "#fff",
-    border: "1px solid #e0e0e0",
+  // workflowBox and workflowCard styles moved to CSS for more granular control,
+  // especially for responsiveness and to match the image precisely.
+  workflowCard: { // This now applies to the *inner* content div
+    backgroundColor: "#fff", // Default white background for larger screens
+    border: "1px solid #e0e0e0", // Default border for larger screens
     borderRadius: "15px",
     padding: "2.5rem",
     textAlign: "center",
@@ -405,6 +551,8 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "flex-start", // Align content to the top
+    boxShadow: "0 4px 10px rgba(0,0,0,0.05)", // Default shadow
   },
   workflowIcon: {
     width: "80px",

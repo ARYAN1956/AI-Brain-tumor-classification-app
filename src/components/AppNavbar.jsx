@@ -142,7 +142,7 @@ const styles = {
     position: "absolute",
     top: "60px",
     right: "10px",
-    backgroundColor: "#131f2f",
+    backgroundColor: "#000035",
     borderRadius: "10px",
     boxShadow: "0 8px 20px rgba(0,0,0,0.25)",
     padding: "1rem",
