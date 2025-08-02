@@ -88,3 +88,4 @@ async def predict(file: UploadFile = File(...)):
     except Exception as e:
         print(f"❌ Prediction error: {e}")
         raise HTTPException(status_code=400, detail=f"Error processing image: {str(e)}")
+
